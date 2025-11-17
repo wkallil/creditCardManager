@@ -1,0 +1,47 @@
+server:
+  port: 8080
+cors:
+  originPatterns: "http://localhost:8080,http://localhost:3000"
+security:
+  jwt:
+    token:
+      secret-key: ${JWT_SECRET_KEY}
+      expire-length: 3600000
+email:
+  subject: "Default Subject"
+  message: "Default Message"
+
+spring:
+  application:
+    name: creditCardManager
+  datasource:
+    url: jdbc:mysql://localhost:3306/credit_card_db
+    username: root
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      smtp:
+        auth: true
+        starttls:
+          enabled: true
+          required: true
+logging:
+  level:
+    root: INFO
+spring-doc:
+  paths-to-match:
+    - /api/v1/**
+    - /auth/**
+swagger-ui:
+  use-root-path: true
