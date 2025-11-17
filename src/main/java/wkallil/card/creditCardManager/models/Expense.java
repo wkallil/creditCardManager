@@ -53,6 +53,7 @@ public class Expense {
     private List<MonthlyCharge> monthlyCharges = new ArrayList<>();
 
     public Expense() {
+
     }
 
     @PrePersist
