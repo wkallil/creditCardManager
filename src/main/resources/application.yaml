@@ -10,6 +10,10 @@ security:
 email:
   subject: "Default Subject"
   message: "Default Message"
+credit:
+  card:
+    invoice:
+      day: 13
 
 spring:
   application:
