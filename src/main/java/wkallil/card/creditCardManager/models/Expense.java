@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -53,7 +54,6 @@ public class Expense {
     private List<MonthlyCharge> monthlyCharges = new ArrayList<>();
 
     public Expense() {
-
     }
 
     @PrePersist
@@ -62,6 +62,10 @@ public class Expense {
         if (isRecurring == null) {
             isRecurring = false;
         }
+    }
+
+    public BigDecimal getInstallmentAmount() {
+        return price.divide(BigDecimal.valueOf(installments), 2, RoundingMode.HALF_UP);
     }
 
     public Long getId() {

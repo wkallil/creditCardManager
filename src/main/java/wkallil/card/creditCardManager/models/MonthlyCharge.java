@@ -44,6 +44,15 @@ public class MonthlyCharge {
     public MonthlyCharge() {
     }
 
+    public MonthlyCharge(Expense expense, Owner owner, BigDecimal amount, String referenceMonth, LocalDate invoiceDate, Integer installmentNumber) {
+        this.expense = expense;
+        this.owner = owner;
+        this.amount = amount;
+        this.referenceMonth = referenceMonth;
+        this.invoiceDate = invoiceDate;
+        this.installmentNumber = installmentNumber;
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
