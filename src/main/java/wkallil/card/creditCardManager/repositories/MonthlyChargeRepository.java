@@ -5,23 +5,27 @@ import org.springframework.data.jpa.repository.Query;
 import wkallil.card.creditCardManager.models.MonthlyCharge;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface MonthlyChargeRepository extends JpaRepository<MonthlyCharge, Long> {
 
-    boolean existsByExpenseIdAndReferenceMonth(Long expenseId, String referenceMonth);
+    boolean existsByExpenseIdAndReferenceMonth(Long expenseId, LocalDate referenceMonth);
 
-    List<MonthlyCharge> findByOwnerIdAndReferenceMonth(Long ownerId, String referenceMonth);
+    Optional<MonthlyCharge> findByExpenseIdAndReferenceMonth(Long expenseId, LocalDate referenceMonth);
 
-    List<MonthlyCharge> findByReferenceMonth(String referenceMonth);
+    List<MonthlyCharge> findByOwnerIdAndReferenceMonth(Long ownerId, LocalDate referenceMonth);
+
+    List<MonthlyCharge> findByReferenceMonth(LocalDate referenceMonth);
 
     @Query("""
             SELECT SUM(mc.amount)
             FROM MonthlyCharge mc
-            WHERE mc.owner..id = :ownerId
+            WHERE mc.owner.id = :ownerId
             AND mc.referenceMonth = :referenceMonth
             """
     )
-    BigDecimal sumByOwnerIdAndReferenceMonth(Long ownerId, String referenceMonth);
+    BigDecimal sumByOwnerIdAndReferenceMonth(Long ownerId, LocalDate referenceMonth);
 
 }
