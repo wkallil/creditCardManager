@@ -1,16 +1,21 @@
 package wkallil.card.creditCardManager.dtos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class MonthlyChargeDTO {
+@JsonPropertyOrder({"id", "expenseName", "amount", "installmentNumber", "totalInstallments", "ownerName", "recurring", "invoiceDate"})
+public class MonthlyChargeDTO extends RepresentationModel<MonthlyChargeDTO> {
 
     private Long id;
     private String expenseName;
     private BigDecimal amount;
     private Integer installmentNumber;
     private Integer totalInstallments;
+    private String ownerName;
     private Boolean isRecurring;
     private LocalDate invoiceDate;
 
@@ -57,6 +62,14 @@ public class MonthlyChargeDTO {
         this.totalInstallments = totalInstallments;
     }
 
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     public Boolean getRecurring() {
         return isRecurring;
     }
@@ -77,11 +90,11 @@ public class MonthlyChargeDTO {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         MonthlyChargeDTO that = (MonthlyChargeDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(expenseName, that.expenseName) && Objects.equals(amount, that.amount) && Objects.equals(installmentNumber, that.installmentNumber) && Objects.equals(totalInstallments, that.totalInstallments) && Objects.equals(isRecurring, that.isRecurring) && Objects.equals(invoiceDate, that.invoiceDate);
+        return Objects.equals(id, that.id) && Objects.equals(expenseName, that.expenseName) && Objects.equals(amount, that.amount) && Objects.equals(installmentNumber, that.installmentNumber) && Objects.equals(totalInstallments, that.totalInstallments) && Objects.equals(ownerName, that.ownerName) && Objects.equals(isRecurring, that.isRecurring) && Objects.equals(invoiceDate, that.invoiceDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, expenseName, amount, installmentNumber, totalInstallments, isRecurring, invoiceDate);
+        return Objects.hash(id, expenseName, amount, installmentNumber, totalInstallments, ownerName, isRecurring, invoiceDate);
     }
 }

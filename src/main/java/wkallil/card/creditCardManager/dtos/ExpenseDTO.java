@@ -1,11 +1,15 @@
 package wkallil.card.creditCardManager.dtos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class ExpenseDTO {
+@JsonPropertyOrder({"id", "name", "price", "installments", "ownerId", "ownerName", "recurring", "startDate", "createdAt"})
+public class ExpenseDTO extends RepresentationModel<ExpenseDTO> {
 
     private Long id;
     private String name;

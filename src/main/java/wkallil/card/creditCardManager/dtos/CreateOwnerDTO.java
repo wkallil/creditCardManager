@@ -1,18 +1,21 @@
 package wkallil.card.creditCardManager.dtos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.util.Objects;
 
-public class CreateOwnerDTO {
+@JsonPropertyOrder({"name", "email"})
+public class CreateOwnerDTO extends RepresentationModel<CreateOwnerDTO> {
 
     @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Email(message = "Email should be valid")
     @NotBlank(message = "Email is mandatory")
-    private String Email;
+    private String email;
 
     public CreateOwnerDTO() {
     }
@@ -26,22 +29,22 @@ public class CreateOwnerDTO {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         CreateOwnerDTO that = (CreateOwnerDTO) o;
-        return Objects.equals(name, that.name) && Objects.equals(Email, that.Email);
+        return Objects.equals(name, that.name) && Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, Email);
+        return Objects.hash(name, email);
     }
 }

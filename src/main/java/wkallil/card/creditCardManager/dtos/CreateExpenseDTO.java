@@ -1,15 +1,18 @@
 package wkallil.card.creditCardManager.dtos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class CreateExpenseDTO {
+@JsonPropertyOrder({"name", "price", "installments", "ownerId", "recurring", "startDate"})
+public class CreateExpenseDTO extends RepresentationModel<CreateExpenseDTO> {
 
     @NotBlank(message = "Name is mandatory")
     private String name;
