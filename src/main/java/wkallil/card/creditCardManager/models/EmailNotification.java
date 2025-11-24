@@ -21,7 +21,7 @@ public class EmailNotification {
     private Owner owner;
 
     @Column(name = "reference_month", nullable = false)
-    private String referenceMonth;
+    private LocalDate referenceMonth;
 
     @Column(name = "invoice_date", nullable = false)
     private LocalDate invoiceDate;
@@ -55,11 +55,11 @@ public class EmailNotification {
         this.owner = owner;
     }
 
-    public String getReferenceMonth() {
+    public LocalDate getReferenceMonth() {
         return referenceMonth;
     }
 
-    public void setReferenceMonth(String referenceMonth) {
+    public void setReferenceMonth(LocalDate referenceMonth) {
         this.referenceMonth = referenceMonth;
     }
 

@@ -1,5 +1,6 @@
 package wkallil.card.creditCardManager.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public class MonthlyCharge {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expense_id", nullable = false)
+    @JsonIgnoreProperties({"monthlyCharges"})
     private Expense expense;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,8 +31,8 @@ public class MonthlyCharge {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
 
-    @Column(name = "reference_month", nullable = false, length = 7)
-    private String referenceMonth;
+    @Column(name = "reference_month", nullable = false)
+    private LocalDate referenceMonth;
 
     @Column(name = "invoice_date", nullable = false)
     private LocalDate invoiceDate;
@@ -44,7 +46,7 @@ public class MonthlyCharge {
     public MonthlyCharge() {
     }
 
-    public MonthlyCharge(Expense expense, Owner owner, BigDecimal amount, String referenceMonth, LocalDate invoiceDate, Integer installmentNumber) {
+    public MonthlyCharge(Expense expense, Owner owner, BigDecimal amount, LocalDate referenceMonth, LocalDate invoiceDate, Integer installmentNumber) {
         this.expense = expense;
         this.owner = owner;
         this.amount = amount;
@@ -90,11 +92,11 @@ public class MonthlyCharge {
         this.amount = amount;
     }
 
-    public String getReferenceMonth() {
+    public LocalDate getReferenceMonth() {
         return referenceMonth;
     }
 
-    public void setReferenceMonth(String referenceMonth) {
+    public void setReferenceMonth(LocalDate referenceMonth) {
         this.referenceMonth = referenceMonth;
     }
 
