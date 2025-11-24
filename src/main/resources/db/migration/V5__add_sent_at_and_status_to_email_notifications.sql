@@ -1,0 +1,5 @@
+ALTER TABLE email_notifications
+  ADD COLUMN IF NOT EXISTS sent_at TIMESTAMP,
+  ADD COLUMN IF NOT EXISTS status VARCHAR(20);
+
+
