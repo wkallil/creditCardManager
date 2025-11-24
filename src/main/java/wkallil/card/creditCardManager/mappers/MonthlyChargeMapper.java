@@ -12,7 +12,8 @@ public interface MonthlyChargeMapper {
 
     @Mapping(source = "expense.name", target = "expenseName")
     @Mapping(source = "expense.installments", target = "totalInstallments")
-    @Mapping(source = "expense.isRecurring", target = "isRecurring")
+    @Mapping(source = "expense.recurring", target = "recurring")
+    @Mapping(source = "expense.owner.name", target = "ownerName")
     MonthlyChargeDTO toDto(MonthlyCharge entity);
 
     List<MonthlyChargeDTO> toDtoList(List<MonthlyCharge> entitiesList);
